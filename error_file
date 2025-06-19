@@ -1,0 +1,228 @@
+[[1;34mINFO[m] Scanning for projects...
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m-------------------------< [0;36mtn.esprit:tp-foyer[0;1m >-------------------------[m
+[[1;34mINFO[m] [1mBuilding tp-foyer 5.0.0[m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:3.3.1:resources[m [1m(default-resources)[m @ [36mtp-foyer[0;1m ---[m
+[[1;34mINFO[m] Copying 1 resource from src/main/resources to target/classes
+[[1;34mINFO[m] Copying 0 resource from src/main/resources to target/classes
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.13.0:compile[m [1m(default-compile)[m @ [36mtp-foyer[0;1m ---[m
+[[1;34mINFO[m] Nothing to compile - all classes are up to date.
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:3.3.1:testResources[m [1m(default-testResources)[m @ [36mtp-foyer[0;1m ---[m
+[[1;34mINFO[m] skip non existing resourceDirectory /home/nourhene/LMS-tests/foyer_lab/src/test/resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.13.0:testCompile[m [1m(default-testCompile)[m @ [36mtp-foyer[0;1m ---[m
+[[1;34mINFO[m] Recompiling the module because of [1mchanged source code[m.
+[[1;34mINFO[m] Compiling 6 source files with javac [debug parameters release 17] to target/test-classes
+[[1;34mINFO[m] -------------------------------------------------------------
+[[1;31mERROR[m] COMPILATION ERROR : 
+[[1;34mINFO[m] -------------------------------------------------------------
+[[1;31mERROR[m] /home/nourhene/LMS-tests/foyer_lab/src/test/java/tn/esprit/tpfoyer/service/EtudiantServiceImplTest.java:[31,30] no suitable constructor found for Etudiant(long,java.lang.String,java.lang.String,long,java.lang.String,java.util.Date,<nulltype>)
+    constructor tn.esprit.tpfoyer.entity.Etudiant.Etudiant(long,java.lang.String,java.lang.String,long,java.util.Date,java.util.Set<tn.esprit.tpfoyer.entity.Reservation>) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor tn.esprit.tpfoyer.entity.Etudiant.Etudiant() is not applicable
+      (actual and formal argument lists differ in length)
+[[1;31mERROR[m] /home/nourhene/LMS-tests/foyer_lab/src/test/java/tn/esprit/tpfoyer/service/EtudiantServiceImplTest.java:[32,30] no suitable constructor found for Etudiant(long,java.lang.String,java.lang.String,long,java.lang.String,java.util.Date,<nulltype>)
+    constructor tn.esprit.tpfoyer.entity.Etudiant.Etudiant(long,java.lang.String,java.lang.String,long,java.util.Date,java.util.Set<tn.esprit.tpfoyer.entity.Reservation>) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor tn.esprit.tpfoyer.entity.Etudiant.Etudiant() is not applicable
+      (actual and formal argument lists differ in length)
+[[1;31mERROR[m] /home/nourhene/LMS-tests/foyer_lab/src/test/java/tn/esprit/tpfoyer/service/EtudiantServiceImplTest.java:[47,33] no suitable constructor found for Etudiant(long,java.lang.String,java.lang.String,long,java.lang.String,java.util.Date,<nulltype>)
+    constructor tn.esprit.tpfoyer.entity.Etudiant.Etudiant(long,java.lang.String,java.lang.String,long,java.util.Date,java.util.Set<tn.esprit.tpfoyer.entity.Reservation>) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor tn.esprit.tpfoyer.entity.Etudiant.Etudiant() is not applicable
+      (actual and formal argument lists differ in length)
+[[1;31mERROR[m] /home/nourhene/LMS-tests/foyer_lab/src/test/java/tn/esprit/tpfoyer/service/EtudiantServiceImplTest.java:[76,32] no suitable constructor found for Etudiant(<nulltype>,java.lang.String,java.lang.String,long,java.lang.String,java.util.Date,<nulltype>)
+    constructor tn.esprit.tpfoyer.entity.Etudiant.Etudiant(long,java.lang.String,java.lang.String,long,java.util.Date,java.util.Set<tn.esprit.tpfoyer.entity.Reservation>) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor tn.esprit.tpfoyer.entity.Etudiant.Etudiant() is not applicable
+      (actual and formal argument lists differ in length)
+[[1;31mERROR[m] /home/nourhene/LMS-tests/foyer_lab/src/test/java/tn/esprit/tpfoyer/service/EtudiantServiceImplTest.java:[77,34] no suitable constructor found for Etudiant(long,java.lang.String,java.lang.String,long,java.lang.String,java.util.Date,<nulltype>)
+    constructor tn.esprit.tpfoyer.entity.Etudiant.Etudiant(long,java.lang.String,java.lang.String,long,java.util.Date,java.util.Set<tn.esprit.tpfoyer.entity.Reservation>) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor tn.esprit.tpfoyer.entity.Etudiant.Etudiant() is not applicable
+      (actual and formal argument lists differ in length)
+[[1;31mERROR[m] /home/nourhene/LMS-tests/foyer_lab/src/test/java/tn/esprit/tpfoyer/service/EtudiantServiceImplTest.java:[92,37] no suitable constructor found for Etudiant(long,java.lang.String,java.lang.String,long,java.lang.String,java.util.Date,<nulltype>)
+    constructor tn.esprit.tpfoyer.entity.Etudiant.Etudiant(long,java.lang.String,java.lang.String,long,java.util.Date,java.util.Set<tn.esprit.tpfoyer.entity.Reservation>) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor tn.esprit.tpfoyer.entity.Etudiant.Etudiant() is not applicable
+      (actual and formal argument lists differ in length)
+[[1;31mERROR[m] /home/nourhene/LMS-tests/foyer_lab/src/test/java/tn/esprit/tpfoyer/service/EtudiantServiceImplTest.java:[123,33] no suitable constructor found for Etudiant(long,java.lang.String,java.lang.String,long,java.lang.String,java.util.Date,<nulltype>)
+    constructor tn.esprit.tpfoyer.entity.Etudiant.Etudiant(long,java.lang.String,java.lang.String,long,java.util.Date,java.util.Set<tn.esprit.tpfoyer.entity.Reservation>) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor tn.esprit.tpfoyer.entity.Etudiant.Etudiant() is not applicable
+      (actual and formal argument lists differ in length)
+[[1;31mERROR[m] /home/nourhene/LMS-tests/foyer_lab/src/test/java/tn/esprit/tpfoyer/service/FoyerServiceImplTest.java:[31,24] no suitable constructor found for Foyer(long,java.lang.String,long,<nulltype>)
+    constructor tn.esprit.tpfoyer.entity.Foyer.Foyer(java.lang.Long,java.lang.String,long,tn.esprit.tpfoyer.entity.Universite,java.util.Set<tn.esprit.tpfoyer.entity.Bloc>) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor tn.esprit.tpfoyer.entity.Foyer.Foyer() is not applicable
+      (actual and formal argument lists differ in length)
+[[1;31mERROR[m] /home/nourhene/LMS-tests/foyer_lab/src/test/java/tn/esprit/tpfoyer/service/FoyerServiceImplTest.java:[32,24] no suitable constructor found for Foyer(long,java.lang.String,long,<nulltype>)
+    constructor tn.esprit.tpfoyer.entity.Foyer.Foyer(java.lang.Long,java.lang.String,long,tn.esprit.tpfoyer.entity.Universite,java.util.Set<tn.esprit.tpfoyer.entity.Bloc>) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor tn.esprit.tpfoyer.entity.Foyer.Foyer() is not applicable
+      (actual and formal argument lists differ in length)
+[[1;31mERROR[m] /home/nourhene/LMS-tests/foyer_lab/src/test/java/tn/esprit/tpfoyer/service/FoyerServiceImplTest.java:[48,27] no suitable constructor found for Foyer(long,java.lang.String,long,<nulltype>)
+    constructor tn.esprit.tpfoyer.entity.Foyer.Foyer(java.lang.Long,java.lang.String,long,tn.esprit.tpfoyer.entity.Universite,java.util.Set<tn.esprit.tpfoyer.entity.Bloc>) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor tn.esprit.tpfoyer.entity.Foyer.Foyer() is not applicable
+      (actual and formal argument lists differ in length)
+[[1;31mERROR[m] /home/nourhene/LMS-tests/foyer_lab/src/test/java/tn/esprit/tpfoyer/service/FoyerServiceImplTest.java:[76,29] no suitable constructor found for Foyer(<nulltype>,java.lang.String,long,<nulltype>)
+    constructor tn.esprit.tpfoyer.entity.Foyer.Foyer(java.lang.Long,java.lang.String,long,tn.esprit.tpfoyer.entity.Universite,java.util.Set<tn.esprit.tpfoyer.entity.Bloc>) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor tn.esprit.tpfoyer.entity.Foyer.Foyer() is not applicable
+      (actual and formal argument lists differ in length)
+[[1;31mERROR[m] /home/nourhene/LMS-tests/foyer_lab/src/test/java/tn/esprit/tpfoyer/service/FoyerServiceImplTest.java:[77,28] no suitable constructor found for Foyer(long,java.lang.String,long,<nulltype>)
+    constructor tn.esprit.tpfoyer.entity.Foyer.Foyer(java.lang.Long,java.lang.String,long,tn.esprit.tpfoyer.entity.Universite,java.util.Set<tn.esprit.tpfoyer.entity.Bloc>) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor tn.esprit.tpfoyer.entity.Foyer.Foyer() is not applicable
+      (actual and formal argument lists differ in length)
+[[1;31mERROR[m] /home/nourhene/LMS-tests/foyer_lab/src/test/java/tn/esprit/tpfoyer/service/FoyerServiceImplTest.java:[91,31] no suitable constructor found for Foyer(long,java.lang.String,long,<nulltype>)
+    constructor tn.esprit.tpfoyer.entity.Foyer.Foyer(java.lang.Long,java.lang.String,long,tn.esprit.tpfoyer.entity.Universite,java.util.Set<tn.esprit.tpfoyer.entity.Bloc>) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor tn.esprit.tpfoyer.entity.Foyer.Foyer() is not applicable
+      (actual and formal argument lists differ in length)
+[[1;31mERROR[m] /home/nourhene/LMS-tests/foyer_lab/src/test/java/tn/esprit/tpfoyer/service/UniversiteServiceImplTest.java:[30,25] no suitable constructor found for Universite(long,java.lang.String,<nulltype>)
+    constructor tn.esprit.tpfoyer.entity.Universite.Universite(long,java.lang.String,java.lang.String,tn.esprit.tpfoyer.entity.Foyer) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor tn.esprit.tpfoyer.entity.Universite.Universite() is not applicable
+      (actual and formal argument lists differ in length)
+[[1;31mERROR[m] /home/nourhene/LMS-tests/foyer_lab/src/test/java/tn/esprit/tpfoyer/service/UniversiteServiceImplTest.java:[31,25] no suitable constructor found for Universite(long,java.lang.String,<nulltype>)
+    constructor tn.esprit.tpfoyer.entity.Universite.Universite(long,java.lang.String,java.lang.String,tn.esprit.tpfoyer.entity.Foyer) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor tn.esprit.tpfoyer.entity.Universite.Universite() is not applicable
+      (actual and formal argument lists differ in length)
+[[1;31mERROR[m] /home/nourhene/LMS-tests/foyer_lab/src/test/java/tn/esprit/tpfoyer/service/UniversiteServiceImplTest.java:[47,37] no suitable constructor found for Universite(long,java.lang.String,<nulltype>)
+    constructor tn.esprit.tpfoyer.entity.Universite.Universite(long,java.lang.String,java.lang.String,tn.esprit.tpfoyer.entity.Foyer) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor tn.esprit.tpfoyer.entity.Universite.Universite() is not applicable
+      (actual and formal argument lists differ in length)
+[[1;31mERROR[m] /home/nourhene/LMS-tests/foyer_lab/src/test/java/tn/esprit/tpfoyer/service/UniversiteServiceImplTest.java:[76,36] no suitable constructor found for Universite(<nulltype>,java.lang.String,<nulltype>)
+    constructor tn.esprit.tpfoyer.entity.Universite.Universite(long,java.lang.String,java.lang.String,tn.esprit.tpfoyer.entity.Foyer) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor tn.esprit.tpfoyer.entity.Universite.Universite() is not applicable
+      (actual and formal argument lists differ in length)
+[[1;31mERROR[m] /home/nourhene/LMS-tests/foyer_lab/src/test/java/tn/esprit/tpfoyer/service/UniversiteServiceImplTest.java:[77,38] no suitable constructor found for Universite(long,java.lang.String,<nulltype>)
+    constructor tn.esprit.tpfoyer.entity.Universite.Universite(long,java.lang.String,java.lang.String,tn.esprit.tpfoyer.entity.Foyer) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor tn.esprit.tpfoyer.entity.Universite.Universite() is not applicable
+      (actual and formal argument lists differ in length)
+[[1;31mERROR[m] /home/nourhene/LMS-tests/foyer_lab/src/test/java/tn/esprit/tpfoyer/service/UniversiteServiceImplTest.java:[91,41] no suitable constructor found for Universite(long,java.lang.String,<nulltype>)
+    constructor tn.esprit.tpfoyer.entity.Universite.Universite(long,java.lang.String,java.lang.String,tn.esprit.tpfoyer.entity.Foyer) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor tn.esprit.tpfoyer.entity.Universite.Universite() is not applicable
+      (actual and formal argument lists differ in length)
+[[1;34mINFO[m] 19 errors 
+[[1;34mINFO[m] -------------------------------------------------------------
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;31mBUILD FAILURE[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  4.688 s
+[[1;34mINFO[m] Finished at: 2025-06-19T23:18:28+01:00
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;31mERROR[m] Failed to execute goal [32morg.apache.maven.plugins:maven-compiler-plugin:3.13.0:testCompile[m [1m(default-testCompile)[m on project [36mtp-foyer[m: [1;31mCompilation failure[m: Compilation failure: 
+[[1;31mERROR[m] /home/nourhene/LMS-tests/foyer_lab/src/test/java/tn/esprit/tpfoyer/service/EtudiantServiceImplTest.java:[31,30] no suitable constructor found for Etudiant(long,java.lang.String,java.lang.String,long,java.lang.String,java.util.Date,<nulltype>)
+[[1;31mERROR[m]     constructor tn.esprit.tpfoyer.entity.Etudiant.Etudiant(long,java.lang.String,java.lang.String,long,java.util.Date,java.util.Set<tn.esprit.tpfoyer.entity.Reservation>) is not applicable
+[[1;31mERROR[m]       (actual and formal argument lists differ in length)
+[[1;31mERROR[m]     constructor tn.esprit.tpfoyer.entity.Etudiant.Etudiant() is not applicable
+[[1;31mERROR[m]       (actual and formal argument lists differ in length)
+[[1;31mERROR[m] /home/nourhene/LMS-tests/foyer_lab/src/test/java/tn/esprit/tpfoyer/service/EtudiantServiceImplTest.java:[32,30] no suitable constructor found for Etudiant(long,java.lang.String,java.lang.String,long,java.lang.String,java.util.Date,<nulltype>)
+[[1;31mERROR[m]     constructor tn.esprit.tpfoyer.entity.Etudiant.Etudiant(long,java.lang.String,java.lang.String,long,java.util.Date,java.util.Set<tn.esprit.tpfoyer.entity.Reservation>) is not applicable
+[[1;31mERROR[m]       (actual and formal argument lists differ in length)
+[[1;31mERROR[m]     constructor tn.esprit.tpfoyer.entity.Etudiant.Etudiant() is not applicable
+[[1;31mERROR[m]       (actual and formal argument lists differ in length)
+[[1;31mERROR[m] /home/nourhene/LMS-tests/foyer_lab/src/test/java/tn/esprit/tpfoyer/service/EtudiantServiceImplTest.java:[47,33] no suitable constructor found for Etudiant(long,java.lang.String,java.lang.String,long,java.lang.String,java.util.Date,<nulltype>)
+[[1;31mERROR[m]     constructor tn.esprit.tpfoyer.entity.Etudiant.Etudiant(long,java.lang.String,java.lang.String,long,java.util.Date,java.util.Set<tn.esprit.tpfoyer.entity.Reservation>) is not applicable
+[[1;31mERROR[m]       (actual and formal argument lists differ in length)
+[[1;31mERROR[m]     constructor tn.esprit.tpfoyer.entity.Etudiant.Etudiant() is not applicable
+[[1;31mERROR[m]       (actual and formal argument lists differ in length)
+[[1;31mERROR[m] /home/nourhene/LMS-tests/foyer_lab/src/test/java/tn/esprit/tpfoyer/service/EtudiantServiceImplTest.java:[76,32] no suitable constructor found for Etudiant(<nulltype>,java.lang.String,java.lang.String,long,java.lang.String,java.util.Date,<nulltype>)
+[[1;31mERROR[m]     constructor tn.esprit.tpfoyer.entity.Etudiant.Etudiant(long,java.lang.String,java.lang.String,long,java.util.Date,java.util.Set<tn.esprit.tpfoyer.entity.Reservation>) is not applicable
+[[1;31mERROR[m]       (actual and formal argument lists differ in length)
+[[1;31mERROR[m]     constructor tn.esprit.tpfoyer.entity.Etudiant.Etudiant() is not applicable
+[[1;31mERROR[m]       (actual and formal argument lists differ in length)
+[[1;31mERROR[m] /home/nourhene/LMS-tests/foyer_lab/src/test/java/tn/esprit/tpfoyer/service/EtudiantServiceImplTest.java:[77,34] no suitable constructor found for Etudiant(long,java.lang.String,java.lang.String,long,java.lang.String,java.util.Date,<nulltype>)
+[[1;31mERROR[m]     constructor tn.esprit.tpfoyer.entity.Etudiant.Etudiant(long,java.lang.String,java.lang.String,long,java.util.Date,java.util.Set<tn.esprit.tpfoyer.entity.Reservation>) is not applicable
+[[1;31mERROR[m]       (actual and formal argument lists differ in length)
+[[1;31mERROR[m]     constructor tn.esprit.tpfoyer.entity.Etudiant.Etudiant() is not applicable
+[[1;31mERROR[m]       (actual and formal argument lists differ in length)
+[[1;31mERROR[m] /home/nourhene/LMS-tests/foyer_lab/src/test/java/tn/esprit/tpfoyer/service/EtudiantServiceImplTest.java:[92,37] no suitable constructor found for Etudiant(long,java.lang.String,java.lang.String,long,java.lang.String,java.util.Date,<nulltype>)
+[[1;31mERROR[m]     constructor tn.esprit.tpfoyer.entity.Etudiant.Etudiant(long,java.lang.String,java.lang.String,long,java.util.Date,java.util.Set<tn.esprit.tpfoyer.entity.Reservation>) is not applicable
+[[1;31mERROR[m]       (actual and formal argument lists differ in length)
+[[1;31mERROR[m]     constructor tn.esprit.tpfoyer.entity.Etudiant.Etudiant() is not applicable
+[[1;31mERROR[m]       (actual and formal argument lists differ in length)
+[[1;31mERROR[m] /home/nourhene/LMS-tests/foyer_lab/src/test/java/tn/esprit/tpfoyer/service/EtudiantServiceImplTest.java:[123,33] no suitable constructor found for Etudiant(long,java.lang.String,java.lang.String,long,java.lang.String,java.util.Date,<nulltype>)
+[[1;31mERROR[m]     constructor tn.esprit.tpfoyer.entity.Etudiant.Etudiant(long,java.lang.String,java.lang.String,long,java.util.Date,java.util.Set<tn.esprit.tpfoyer.entity.Reservation>) is not applicable
+[[1;31mERROR[m]       (actual and formal argument lists differ in length)
+[[1;31mERROR[m]     constructor tn.esprit.tpfoyer.entity.Etudiant.Etudiant() is not applicable
+[[1;31mERROR[m]       (actual and formal argument lists differ in length)
+[[1;31mERROR[m] /home/nourhene/LMS-tests/foyer_lab/src/test/java/tn/esprit/tpfoyer/service/FoyerServiceImplTest.java:[31,24] no suitable constructor found for Foyer(long,java.lang.String,long,<nulltype>)
+[[1;31mERROR[m]     constructor tn.esprit.tpfoyer.entity.Foyer.Foyer(java.lang.Long,java.lang.String,long,tn.esprit.tpfoyer.entity.Universite,java.util.Set<tn.esprit.tpfoyer.entity.Bloc>) is not applicable
+[[1;31mERROR[m]       (actual and formal argument lists differ in length)
+[[1;31mERROR[m]     constructor tn.esprit.tpfoyer.entity.Foyer.Foyer() is not applicable
+[[1;31mERROR[m]       (actual and formal argument lists differ in length)
+[[1;31mERROR[m] /home/nourhene/LMS-tests/foyer_lab/src/test/java/tn/esprit/tpfoyer/service/FoyerServiceImplTest.java:[32,24] no suitable constructor found for Foyer(long,java.lang.String,long,<nulltype>)
+[[1;31mERROR[m]     constructor tn.esprit.tpfoyer.entity.Foyer.Foyer(java.lang.Long,java.lang.String,long,tn.esprit.tpfoyer.entity.Universite,java.util.Set<tn.esprit.tpfoyer.entity.Bloc>) is not applicable
+[[1;31mERROR[m]       (actual and formal argument lists differ in length)
+[[1;31mERROR[m]     constructor tn.esprit.tpfoyer.entity.Foyer.Foyer() is not applicable
+[[1;31mERROR[m]       (actual and formal argument lists differ in length)
+[[1;31mERROR[m] /home/nourhene/LMS-tests/foyer_lab/src/test/java/tn/esprit/tpfoyer/service/FoyerServiceImplTest.java:[48,27] no suitable constructor found for Foyer(long,java.lang.String,long,<nulltype>)
+[[1;31mERROR[m]     constructor tn.esprit.tpfoyer.entity.Foyer.Foyer(java.lang.Long,java.lang.String,long,tn.esprit.tpfoyer.entity.Universite,java.util.Set<tn.esprit.tpfoyer.entity.Bloc>) is not applicable
+[[1;31mERROR[m]       (actual and formal argument lists differ in length)
+[[1;31mERROR[m]     constructor tn.esprit.tpfoyer.entity.Foyer.Foyer() is not applicable
+[[1;31mERROR[m]       (actual and formal argument lists differ in length)
+[[1;31mERROR[m] /home/nourhene/LMS-tests/foyer_lab/src/test/java/tn/esprit/tpfoyer/service/FoyerServiceImplTest.java:[76,29] no suitable constructor found for Foyer(<nulltype>,java.lang.String,long,<nulltype>)
+[[1;31mERROR[m]     constructor tn.esprit.tpfoyer.entity.Foyer.Foyer(java.lang.Long,java.lang.String,long,tn.esprit.tpfoyer.entity.Universite,java.util.Set<tn.esprit.tpfoyer.entity.Bloc>) is not applicable
+[[1;31mERROR[m]       (actual and formal argument lists differ in length)
+[[1;31mERROR[m]     constructor tn.esprit.tpfoyer.entity.Foyer.Foyer() is not applicable
+[[1;31mERROR[m]       (actual and formal argument lists differ in length)
+[[1;31mERROR[m] /home/nourhene/LMS-tests/foyer_lab/src/test/java/tn/esprit/tpfoyer/service/FoyerServiceImplTest.java:[77,28] no suitable constructor found for Foyer(long,java.lang.String,long,<nulltype>)
+[[1;31mERROR[m]     constructor tn.esprit.tpfoyer.entity.Foyer.Foyer(java.lang.Long,java.lang.String,long,tn.esprit.tpfoyer.entity.Universite,java.util.Set<tn.esprit.tpfoyer.entity.Bloc>) is not applicable
+[[1;31mERROR[m]       (actual and formal argument lists differ in length)
+[[1;31mERROR[m]     constructor tn.esprit.tpfoyer.entity.Foyer.Foyer() is not applicable
+[[1;31mERROR[m]       (actual and formal argument lists differ in length)
+[[1;31mERROR[m] /home/nourhene/LMS-tests/foyer_lab/src/test/java/tn/esprit/tpfoyer/service/FoyerServiceImplTest.java:[91,31] no suitable constructor found for Foyer(long,java.lang.String,long,<nulltype>)
+[[1;31mERROR[m]     constructor tn.esprit.tpfoyer.entity.Foyer.Foyer(java.lang.Long,java.lang.String,long,tn.esprit.tpfoyer.entity.Universite,java.util.Set<tn.esprit.tpfoyer.entity.Bloc>) is not applicable
+[[1;31mERROR[m]       (actual and formal argument lists differ in length)
+[[1;31mERROR[m]     constructor tn.esprit.tpfoyer.entity.Foyer.Foyer() is not applicable
+[[1;31mERROR[m]       (actual and formal argument lists differ in length)
+[[1;31mERROR[m] /home/nourhene/LMS-tests/foyer_lab/src/test/java/tn/esprit/tpfoyer/service/UniversiteServiceImplTest.java:[30,25] no suitable constructor found for Universite(long,java.lang.String,<nulltype>)
+[[1;31mERROR[m]     constructor tn.esprit.tpfoyer.entity.Universite.Universite(long,java.lang.String,java.lang.String,tn.esprit.tpfoyer.entity.Foyer) is not applicable
+[[1;31mERROR[m]       (actual and formal argument lists differ in length)
+[[1;31mERROR[m]     constructor tn.esprit.tpfoyer.entity.Universite.Universite() is not applicable
+[[1;31mERROR[m]       (actual and formal argument lists differ in length)
+[[1;31mERROR[m] /home/nourhene/LMS-tests/foyer_lab/src/test/java/tn/esprit/tpfoyer/service/UniversiteServiceImplTest.java:[31,25] no suitable constructor found for Universite(long,java.lang.String,<nulltype>)
+[[1;31mERROR[m]     constructor tn.esprit.tpfoyer.entity.Universite.Universite(long,java.lang.String,java.lang.String,tn.esprit.tpfoyer.entity.Foyer) is not applicable
+[[1;31mERROR[m]       (actual and formal argument lists differ in length)
+[[1;31mERROR[m]     constructor tn.esprit.tpfoyer.entity.Universite.Universite() is not applicable
+[[1;31mERROR[m]       (actual and formal argument lists differ in length)
+[[1;31mERROR[m] /home/nourhene/LMS-tests/foyer_lab/src/test/java/tn/esprit/tpfoyer/service/UniversiteServiceImplTest.java:[47,37] no suitable constructor found for Universite(long,java.lang.String,<nulltype>)
+[[1;31mERROR[m]     constructor tn.esprit.tpfoyer.entity.Universite.Universite(long,java.lang.String,java.lang.String,tn.esprit.tpfoyer.entity.Foyer) is not applicable
+[[1;31mERROR[m]       (actual and formal argument lists differ in length)
+[[1;31mERROR[m]     constructor tn.esprit.tpfoyer.entity.Universite.Universite() is not applicable
+[[1;31mERROR[m]       (actual and formal argument lists differ in length)
+[[1;31mERROR[m] /home/nourhene/LMS-tests/foyer_lab/src/test/java/tn/esprit/tpfoyer/service/UniversiteServiceImplTest.java:[76,36] no suitable constructor found for Universite(<nulltype>,java.lang.String,<nulltype>)
+[[1;31mERROR[m]     constructor tn.esprit.tpfoyer.entity.Universite.Universite(long,java.lang.String,java.lang.String,tn.esprit.tpfoyer.entity.Foyer) is not applicable
+[[1;31mERROR[m]       (actual and formal argument lists differ in length)
+[[1;31mERROR[m]     constructor tn.esprit.tpfoyer.entity.Universite.Universite() is not applicable
+[[1;31mERROR[m]       (actual and formal argument lists differ in length)
+[[1;31mERROR[m] /home/nourhene/LMS-tests/foyer_lab/src/test/java/tn/esprit/tpfoyer/service/UniversiteServiceImplTest.java:[77,38] no suitable constructor found for Universite(long,java.lang.String,<nulltype>)
+[[1;31mERROR[m]     constructor tn.esprit.tpfoyer.entity.Universite.Universite(long,java.lang.String,java.lang.String,tn.esprit.tpfoyer.entity.Foyer) is not applicable
+[[1;31mERROR[m]       (actual and formal argument lists differ in length)
+[[1;31mERROR[m]     constructor tn.esprit.tpfoyer.entity.Universite.Universite() is not applicable
+[[1;31mERROR[m]       (actual and formal argument lists differ in length)
+[[1;31mERROR[m] /home/nourhene/LMS-tests/foyer_lab/src/test/java/tn/esprit/tpfoyer/service/UniversiteServiceImplTest.java:[91,41] no suitable constructor found for Universite(long,java.lang.String,<nulltype>)
+[[1;31mERROR[m]     constructor tn.esprit.tpfoyer.entity.Universite.Universite(long,java.lang.String,java.lang.String,tn.esprit.tpfoyer.entity.Foyer) is not applicable
+[[1;31mERROR[m]       (actual and formal argument lists differ in length)
+[[1;31mERROR[m]     constructor tn.esprit.tpfoyer.entity.Universite.Universite() is not applicable
+[[1;31mERROR[m]       (actual and formal argument lists differ in length)
+[[1;31mERROR[m] -> [1m[Help 1][m
+[[1;31mERROR[m] 
+[[1;31mERROR[m] To see the full stack trace of the errors, re-run Maven with the [1m-e[m switch.
+[[1;31mERROR[m] Re-run Maven using the [1m-X[m switch to enable full debug logging.
+[[1;31mERROR[m] 
+[[1;31mERROR[m] For more information about the errors and possible solutions, please read the following articles:
+[[1;31mERROR[m] [1m[Help 1][m http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

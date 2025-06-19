@@ -1,18 +1,34 @@
-FROM openjdk:17-jdk-slim
+# --- Stage 1: Build the application with Maven and Java 17 ---
+# Use an official Maven image that includes OpenJDK 17. This handles the installation for you.
+FROM maven:3.9.6-eclipse-temurin-17-alpine AS builder
 
-# 2. Set a working directory inside the container
+# Set the working directory inside the container
 WORKDIR /app
 
-# 3. Copy the packaged Spring Boot application JAR file from your local 'target' directory
-#    into the container's working directory.
-#    Replace 'tp-foyer-5.0.0.jar' with the actual name of your JAR file
-#    if it's different (e.g., if you have a custom finalName in your pom.xml).
-COPY target/tp-foyer-5.0.0.jar app.jar
+# Copy the pom.xml first to leverage Docker's layer caching.
+# Dependencies are only re-downloaded if pom.xml changes.
+COPY pom.xml .
+RUN mvn dependency:go-offline
 
-# 4. Expose the port your Spring Boot application listens on.
-#    Default for Spring Boot is 8080. Change this if your application uses a different port.
-EXPOSE 8082
+# Copy the rest of your application's source code
+COPY src ./src
 
-# 5. Define the command to run when the container starts.
-#    This runs your Spring Boot application.
-ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+# Package the application, skipping the tests. Tests should be run in a separate CI/CD step.
+RUN mvn package -DskipTests
+
+# --- Stage 2: Create the final, lightweight runtime image ---
+# Use an official OpenJDK 17 runtime image. It's much smaller than the full JDK.
+FROM openjdk:17-jdk-alpine
+
+# Set the working directory
+WORKDIR /app
+
+# Expose the port your application will run on
+EXPOSE 8087
+
+# Copy the built JAR from the 'builder' stage to the final image
+# Note: Adjust the JAR name if your pom.xml produces a different name.
+COPY --from=builder /app/target/foyer-1.0.jar app.jar
+
+# Command to run the application
+CMD ["java","-jar","/app/app.jar"]
