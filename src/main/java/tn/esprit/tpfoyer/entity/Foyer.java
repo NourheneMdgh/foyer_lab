@@ -32,7 +32,12 @@ public class Foyer {
             @JsonIgnore
             @ToString.Exclude
     Set<Bloc> blocs;
-
+    // Custom constructor for test cases where universite and blocs are not required
+    public Foyer(Long idFoyer, String nomFoyer, long capaciteFoyer) {
+        this.idFoyer = idFoyer;
+        this.nomFoyer = nomFoyer;
+        this.capaciteFoyer = capaciteFoyer;
+    }
 }
 
 
