@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: analytix-deployment
+  namespace: analytix
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: analytix
+  template:
+    metadata:
+      labels:
+        app: analytix
+    spec:
+      containers:
+      - name: analytix-container
+        image: 10.200.0.21:5000/analytix-snapshot/test:1.0.0
+        ports:
+        - containerPort: 8080
