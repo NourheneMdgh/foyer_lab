@@ -2,7 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: analytix-deployment
-  namespace: analytix
+  labels:
+    app: analytix
 spec:
   replicas: 1
   selector:
@@ -13,8 +14,31 @@ spec:
       labels:
         app: analytix
     spec:
+      nodeSelector:
+        kubernetes.io/hostname: ch01-srv12
       containers:
-      - name: analytix-container
-        image: 10.200.0.21:5000/analytix-snapshot/test:1.0.0
-        ports:
-        - containerPort: 8080
+        - name: analytix-container
+          image: 10.200.0.21:5000/analytix-snapshot/test:1.0.0
+          ports:
+            - containerPort: 8082
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mysql://mysqldb:3306/foyer_db?createDatabaseIfNotExist=true
+            - name: SPRING_DATASOURCE_USERNAME
+              value: root
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: ""
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: http://localhost:4317
+            - name: OTEL_SERVICE_NAME
+              value: analytix-app
+        - name: otel-collector
+          image: otel/opentelemetry-collector-contrib:latest
+          args: ["--config=/etc/otel-collector-config.yaml"]
+          volumeMounts:
+            - name: otel-config
+              mountPath: /etc
+      volumes:
+        - name: otel-config
+          configMap:
+            name: otel-config
