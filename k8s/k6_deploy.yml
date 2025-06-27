@@ -5,7 +5,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: k6-test-scripts
-  namespace: test-automation
+  namespace: analytix
 data:
   add-reservation-test.js: |
     import http from 'k6/http';
@@ -61,12 +61,13 @@ data:
 ---
 # ===================================================================
 #  2. The k6 Deployment that mounts the script from the ConfigMap
+#  2. The k6 Deployment that mounts the script from the ConfigMap
 # ===================================================================
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: k6-collector
-  namespace: test-automation
+  namespace: analytix
 spec:
   replicas: 1
   selector:
@@ -112,7 +113,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: k6-collector-svc
-  namespace: test-automation
+  namespace: analytix
 spec:
   selector:
     app: k6
