@@ -1,0 +1,124 @@
+# ===================================================================
+#  1. ConfigMap to store the k6 test script
+# ===================================================================
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: k6-test-scripts
+  namespace: test-automation
+data:
+  add-reservation-test.js: |
+    import http from 'k6/http';
+    import { check, sleep } from 'k6';
+    import { Trend } from 'k6/metrics';
+
+    const addReservationTrend = new Trend('T_add_reservation_res_time');
+
+    export const options = {
+      scenarios: {
+        add_20_reservations: {
+          executor: 'per-vu-iterations',
+          vus: 20,
+          iterations: 1,
+          maxDuration: '1m',
+        },
+      },
+      thresholds: {
+        'http_req_failed': ['rate<0.01'],
+        'http_req_duration': ['p(95)<500'],
+      },
+    };
+
+    export default function () {
+      const BASE_URL = 'http://<YOUR_APP_SERVICE_OR_IP>:<PORT>/tpfoyer'; // IMPORTANT: Use the internal k8s service name or external IP of your app
+      const endpoint = '/reservation/add-reservation';
+
+      const studentId = __VU;
+      const chambreId = 100 + __VU;
+
+      const payload = JSON.stringify({
+        annee_universitaire: '2025-09-01T00:00:00Z',
+        est_valide: true,
+        etudiants: [{ id_etudiant: studentId }],
+        chambres: [{ id_chambre: chambreId }]
+      });
+
+      const params = {
+        headers: { 'Content-Type': 'application/json' },
+      };
+
+      const res = http.post(`${BASE_URL}${endpoint}`, payload, params);
+    
+      addReservationTrend.add(res.timings.duration);
+
+      check(res, {
+        'status is 200 or 201': (r) => r.status === 200 || r.status === 201,
+        'response contains reservation ID': (r) => r.json('id_reservation') !== null,
+      });
+    
+      sleep(1);
+    }
+---
+# ===================================================================
+#  2. The k6 Deployment that mounts the script from the ConfigMap
+# ===================================================================
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k6-collector
+  namespace: test-automation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: k6
+  template:
+    metadata:
+      labels:
+        app: k6
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: ch01-srv03
+      # Define the volume that will be populated by the ConfigMap
+      volumes:
+        - name: k6-scripts-volume
+          configMap:
+            name: k6-test-scripts # This name must match the ConfigMap's metadata.name
+      containers:
+        - name: k6
+          image: docker.registry.local:5000/monitoring/k6
+          imagePullPolicy: IfNotPresent
+          # This command just keeps the pod running so you can exec into it
+          command: ["k6", "run", "/scripts/add-reservation-test.js"]
+          #command: ["tail", "-f", "/dev/null"]
+          securityContext:
+            runAsUser: 0
+          ports:
+            - containerPort: 5665
+          env:
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+          # Mount the volume into the container's filesystem
+          volumeMounts:
+            - name: k6-scripts-volume # This name must match the volume name defined above
+              mountPath: /scripts    # The directory inside the container where scripts will appear
+---
+# ===================================================================
+#  3. The Service for the k6 pod
+# ===================================================================
+apiVersion: v1
+kind: Service
+metadata:
+  name: k6-collector-svc
+  namespace: test-automation
+spec:
+  selector:
+    app: k6
+  ports:
+    - name: k6-port
+      protocol: TCP
+      port: 5665
+      targetPort: 5665
+  type: ClusterIP
