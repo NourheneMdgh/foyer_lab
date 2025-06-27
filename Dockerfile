@@ -6,22 +6,15 @@ RUN mvn dependency:go-offline
 COPY src ./src
 RUN mvn clean package -DskipTests
 
-# --- Stage 2: Runtime image with OTEL agent ---
+# --- Stage 2: Runtime image without OTEL agent ---
 FROM openjdk:17-jdk-alpine
 WORKDIR /app
 
-ARG OTEL_AGENT_VERSION=2.17.0
-RUN apk add --no-cache curl ca-certificates && \
-    mkdir -p /otel && \
-    curl -fSL \
-      "https://github.com/open-telemetry/opentelemetry-java-instrumentation/releases/download/v${OTEL_AGENT_VERSION}/opentelemetry-javaagent.jar" \
-      -o /otel/opentelemetry-javaagent.jar
-
+# Copy the built JAR from the builder stage
 COPY --from=builder /app/target/*.jar app.jar
+
+# Expose application port
 EXPOSE 8087
 
-# Shell form CMD—simple single line, no JSON array:
-CMD java -javaagent:/otel/opentelemetry-javaagent.jar \
-     -Dotel.exporter.otlp.endpoint=http://localhost:4317 \
-     -Dotel.resource.attributes=service.name=tp-foyer \
-     -jar /app/app.jar
+# Run the application
+CMD ["java", "-jar", "/app/app.jar"]
