@@ -10,7 +10,6 @@ RUN mvn clean package -DskipTests
 FROM openjdk:17-jdk-alpine
 WORKDIR /app
 
-# Use the 2.x autot-instrumentation agent (matches current GitHub)
 ARG OTEL_AGENT_VERSION=2.17.0
 RUN apk add --no-cache curl ca-certificates && \
     mkdir -p /otel && \
@@ -21,8 +20,8 @@ RUN apk add --no-cache curl ca-certificates && \
 COPY --from=builder /app/target/*.jar app.jar
 EXPOSE 8087
 
-CMD ["java",
-     "-javaagent:/otel/opentelemetry-javaagent.jar",
-     "-Dotel.exporter.otlp.endpoint=http://localhost:4317",
-     "-Dotel.resource.attributes=service.name=tp-foyer",
-     "-jar","/app/app.jar"]
+# Shell form CMD—simple single line, no JSON array:
+CMD java -javaagent:/otel/opentelemetry-javaagent.jar \
+     -Dotel.exporter.otlp.endpoint=http://localhost:4317 \
+     -Dotel.resource.attributes=service.name=tp-foyer \
+     -jar /app/app.jar
