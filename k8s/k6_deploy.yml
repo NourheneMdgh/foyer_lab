@@ -79,7 +79,7 @@ spec:
         app: k6
     spec:
       nodeSelector:
-        kubernetes.io/hostname: ch01-srv03
+        kubernetes.io/hostname: ch01-srv12
       # Define the volume that will be populated by the ConfigMap
       volumes:
         - name: k6-scripts-volume
