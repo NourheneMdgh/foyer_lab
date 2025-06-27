@@ -9,5 +9,5 @@ spec:
   loadBalancerIP: 10.200.0.27
   ports:
     - protocol: TCP
-      port: 80
+      port: 8066
       targetPort: 8082
