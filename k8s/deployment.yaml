@@ -19,7 +19,7 @@ spec:
         kubernetes.io/hostname: ch01-srv12
       containers:
         - name: analytix-container
-          image: docker.registry.local:5000/analytix-snapshot/test:1.0.1
+          image: docker.registry.local:5000/analytix-snapshot/test:1.0.2
           ports:
             - containerPort: 8082
           env:
