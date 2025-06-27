@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: analytix-deployment
+  namespace: analytix
   labels:
     app: analytix
 spec:
@@ -22,22 +23,35 @@ spec:
           ports:
             - containerPort: 8082
           env:
+            # JDBC config for MySQL
             - name: SPRING_DATASOURCE_URL
               value: jdbc:mysql://mysqldb:3306/foyer_db?createDatabaseIfNotExist=true
             - name: SPRING_DATASOURCE_USERNAME
               value: root
             - name: SPRING_DATASOURCE_PASSWORD
-              value: ""
-            - name: OTEL_EXPORTER_OTLP_ENDPOINT
-              value: http://localhost:4317
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-root-secret
+                  key: MYSQL_ROOT_PASSWORD
+
+            # OpenTelemetry Javaagent config
             - name: OTEL_SERVICE_NAME
               value: analytix-app
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: "http://otel-collector-service-staging.monitoring-channel.svc.cluster.local:4317"
+            - name: OTEL_EXPORTER_OTLP_METRICS_ENDPOINT
+              value: "http://otel-collector-service-staging.monitoring-channel.svc.cluster.local:4318"
+
         - name: otel-collector
           image: otel/opentelemetry-collector-contrib:latest
-          args: ["--config=/etc/otel-collector-config.yaml"]
+          args:
+            - --config=/etc/otel-collector-config.yaml
+          securityContext:
+            readOnlyRootFilesystem: false
           volumeMounts:
             - name: otel-config
               mountPath: /etc
+
       volumes:
         - name: otel-config
           configMap:
