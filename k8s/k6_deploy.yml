@@ -30,7 +30,7 @@ data:
     };
 
     export default function () {
-      const BASE_URL = 'http://<YOUR_APP_SERVICE_OR_IP>:<PORT>/tpfoyer'; // IMPORTANT: Use the internal k8s service name or external IP of your app
+      const BASE_URL = 'http://10.200.0.27:8066/tpfoyer';
       const endpoint = '/reservation/add-reservation';
 
       const studentId = __VU;
