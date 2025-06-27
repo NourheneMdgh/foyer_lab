@@ -7,7 +7,7 @@ WORKDIR /app
 COPY pom.xml .
 RUN mvn dependency:go-offline
 
-# Copy sources & package
+# Copy sources & build
 COPY src ./src
 RUN mvn clean package -DskipTests
 
@@ -18,23 +18,16 @@ WORKDIR /app
 
 # Install wget and pull in the OpenTelemetry Java agent
 ARG OTEL_AGENT_VERSION=1.28.1
-RUN apk add --no-cache wget && \
-    mkdir -p /otel && \
-    wget -qO /otel/opentelemetry-javaagent.jar \
+RUN apk add --no-cache wget \
+ && mkdir -p /otel \
+ && wget -qO /otel/opentelemetry-javaagent.jar \
       https://github.com/open-telemetry/opentelemetry-java-instrumentation/releases/download/v${OTEL_AGENT_VERSION}/opentelemetry-javaagent.jar
 
 # Copy the Spring Boot JAR from the builder stage
 COPY --from=builder /app/target/*.jar app.jar
 
-# Expose application port
+# Expose the application port
 EXPOSE 8087
 
-# Start the JVM with the OTEL agent attached
-CMD [
-  "java",
-  "-javaagent:/otel/opentelemetry-javaagent.jar",
-  "-Dotel.exporter.otlp.endpoint=http://localhost:4317",
-  "-Dotel.resource.attributes=service.name=tp-foyer",
-  "-jar",
-  "/app/app.jar"
-]
+# Launch the app with the OTEL agent
+CMD ["java","-javaagent:/otel/opentelemetry-javaagent.jar","-Dotel.exporter.otlp.endpoint=http://localhost:4317","-Dotel.resource.attributes=service.name=tp-foyer","-jar","/app/app.jar"]
