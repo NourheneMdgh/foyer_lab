@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysqldb
+  namespace: analytix
+spec:
+  selector:
+    app: mysqldb
+    loadBalancerIP: 10.200.0.27
+  ports:
+    - port: 3306
+      targetPort: 3306
+  clusterIP: None
