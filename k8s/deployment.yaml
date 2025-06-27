@@ -23,36 +23,16 @@ spec:
           ports:
             - containerPort: 8082
           env:
-            # JDBC config for MySQL
+            # --- MySQL (svc in same namespace)
             - name: SPRING_DATASOURCE_URL
               value: jdbc:mysql://mysqldb:3306/foyer_db?createDatabaseIfNotExist=true
             - name: SPRING_DATASOURCE_USERNAME
               value: root
+            - name: MANAGEMENT_METRICS_BINDERS_SYSTEM_ENABLED
+              value: "false"
             - name: SPRING_DATASOURCE_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: mysql-root-secret
                   key: MYSQL_ROOT_PASSWORD
-
-            # OpenTelemetry Javaagent config
-            - name: OTEL_SERVICE_NAME
-              value: analytix-app
-            - name: OTEL_EXPORTER_OTLP_ENDPOINT
-              value: "http://otel-collector-service-staging.monitoring-channel.svc.cluster.local:4317"
-            - name: OTEL_EXPORTER_OTLP_METRICS_ENDPOINT
-              value: "http://otel-collector-service-staging.monitoring-channel.svc.cluster.local:4318"
-
-        - name: otel-collector
-          image: otel/opentelemetry-collector-contrib:latest
-          args:
-            - --config=/etc/otel-collector-config.yaml
-          securityContext:
-            readOnlyRootFilesystem: false
-          volumeMounts:
-            - name: otel-config
-              mountPath: /etc
-
-      volumes:
-        - name: otel-config
-          configMap:
-            name: otel-config
+      # Removed OpenTelemetry sidecar and related volumes
