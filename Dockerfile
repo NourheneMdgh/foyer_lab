@@ -16,9 +16,10 @@ FROM openjdk:17-jdk-alpine
 
 WORKDIR /app
 
-# Install wget and pull in the OpenTelemetry Java agent
+# Install wget + CA certs and pull in the OpenTelemetry Java agent
 ARG OTEL_AGENT_VERSION=1.28.1
-RUN apk add --no-cache wget \
+RUN apk add --no-cache wget ca-certificates \
+ && update-ca-certificates \
  && mkdir -p /otel \
  && wget -qO /otel/opentelemetry-javaagent.jar \
       https://github.com/open-telemetry/opentelemetry-java-instrumentation/releases/download/v${OTEL_AGENT_VERSION}/opentelemetry-javaagent.jar
