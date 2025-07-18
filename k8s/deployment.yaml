@@ -1,38 +1,222 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: analytix-deployment
-  namespace: analytix
+  name: temperature-api
   labels:
-    app: analytix
+    app: temperature-api
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: analytix
+      app: temperature-api
   template:
     metadata:
       labels:
-        app: analytix
+        app: temperature-api
     spec:
       nodeSelector:
-        kubernetes.io/hostname: ch01-srv12
+        kubernetes.io/hostname: ch01-srv11
       containers:
-        - name: analytix-container
-          image: docker.registry.local:5000/analytix-snapshot/test:1.0.2
-          ports:
-            - containerPort: 8082
-          env:
-            # --- MySQL (svc in same namespace)
-            - name: SPRING_DATASOURCE_URL
-              value: jdbc:mysql://mysqldb:3306/foyer_db?createDatabaseIfNotExist=true
-            - name: SPRING_DATASOURCE_USERNAME
-              value: root
-            - name: MANAGEMENT_METRICS_BINDERS_SYSTEM_ENABLED
-              value: "false"
-            - name: SPRING_DATASOURCE_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: mysql-root-secret
-                  key: MYSQL_ROOT_PASSWORD
-      # Removed OpenTelemetry sidecar and related volumes
+      - name: opentelemetry-collector
+        image: git.pyxis.com.tn:5000/monitoring/opentelemetry-collector-contrib
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 8888
+            name: metrics
+            protocol: TCP
+          - containerPort: 4317
+            name: otlp-grpc
+            protocol: TCP
+        args:
+          - --config=/conf/collector.yaml
+        volumeMounts:
+          - mountPath: /conf
+            name: sidecar-conf
+        resources: {}
+      - name: temperature-api
+        image: git.pyxis.com.tn:5000/analytix/temperature_api:6.1.6
+        ports:
+        - containerPort: 1254
+        env:
+        - name: RUNNING_ENV
+          value: "POC"
+        - name: DB_TYPE
+          value: "standelone"
+        - name: SERVICE_NAME
+          value: "Temperature_Api"
+        - name: TRACER_NAME
+          value: "Temperature_Api"
+        - name: METRICS_NAME
+          value: "Temperature_Api"
+        - name: TEMPERATURE_APIS_COUNT
+          value: "1"
+        - name: LOG_LEVEL
+          value: "INFO"
+        - name: number_of_threads
+          value: "5"
+        - name: redis_0_url
+          value: "db-subscribers-0.db-subscribers.staging"
+        - name: sentinel_port
+          value: "5000"
+        - name: redis_1_url
+          value: "db-subscribers-1.db-subscribers.staging"
+        - name: redis_2_url
+          value: "db-subscribers-2.db-subscribers.staging"
+        - name: sentinel_password
+          value: "secret"
+        - name: delimiter
+          value: ""
+        - name: minimum_time_aggregation_window
+          value: "15min"
+        - name: db
+          value: "0"
+        - name: GRACEFUL_TIMEOUT
+          value: "60"
+        - name: CLUSTER_NAME
+          value: "cluster1"
+        - name: TIMEOUT
+          value: "60"
+        - name: HOT_BATCH_DIR
+          value: "/DATA/HOT_BATCH_DIR/"
+        - name: HOT_FAST_DIR
+          value: ""
+        - name: SEARCH_TIME_TOLERATION_PERIOD
+          value: "1h"
+        - name: KEY_REDIS
+          value: "appName_ContentType"
+        - name: HOT_VIEWS_DIR
+          value: "/DATA/HOT_VIEWS_DIR/"
+        - name: OTLP_METRIC_EXPORTER
+          value: localhost:4318
+        - name: OTLP_SPAN_EXPORTER
+          value: localhost:4317
+        - name: PARTITION_KEYS
+          value: "subs_group,ContentType"
+        - name: REDIS_HOST
+          value: "10.200.0.27"
+        - name: REDIS_PORT
+          value: "6379"
+        - name: REDIS_PASSWORD
+          value: "secret"
+        - name: REDIS_UPDATE
+          value: "20"
+        - name: SCORE_API_URL
+          value: ""
+        - name: CLUSTER_MAPPING
+          value: '{ "light":3 ,"minimal":1 ,"power":2 ,"moderate":4 ,"heavy":0}'
+        - name: TIME_DIMENSION_NAME
+          value: "ts"
+        - name: SMALL_KEY
+          value: "SessionsCount"
+        - name: SUBS_GROUP_NUMBER
+          value: "5"
+        - name: SUBSCRIBER_ID_COLUMN
+          value: "SubscriberID"
+        - name: PATTERN
+#          value: '[0-9]{10}.*'
+#          value: '[0-9]{10}-[a-z0-9-]+_gk\.parquet,[0-9]{10}-[a-z0-9-]+\.parquet'
+          value: '[0-9]{10}-[a-z0-9-]+(_gk)*\.parquet'
+        - name: THREADS_NUMBER
+          value: "20000"
+        - name: SCHEMA
+          value: 'pa.schema([pa.field("ts", pa.timestamp("ms")), pa.field("TimeOfFirstUsage", pa.timestamp("ms")), pa.field("TimeOfLastUsage", pa.timestamp("ms")), pa.field("SessionsCount", pa.int64()), pa.field("IMSI", pa.string()), pa.field("IMEI", pa.string()), pa.field("SubscriberID", pa.string()), pa.field("FramedIPAddress", pa.string()), pa.field("TotalDuration", pa.int64()), pa.field("TransactionDuration", pa.int64()), pa.field("URL", pa.string()), pa.field("appName", pa.string()), pa.field("ContentType", pa.string()), pa.field("BytesFromServer", pa.int64()), pa.field("PGWAddress", pa.string()), pa.field("CauseForRecClosing", pa.int64()), pa.field("BytesFromClient", pa.int64()), pa.field("AccessPointNameNI", pa.string()), pa.field("CI", pa.int64()), pa.field("LAC", pa.int64()), pa.field("MCC", pa.int64()), pa.field("MNC", pa.int64()), pa.field("RATType", pa.int64())])'
+        - name: VIEWS
+          value: '["appName","SessionsCount","SubscriberID","ContentType"]'
+        volumeMounts:
+        - name: temperature-api-storage
+          mountPath: /DATA/
+      volumes:
+      - name: temperature-api-storage
+        persistentVolumeClaim:
+          claimName: temp-pvc
+
+      - name: sidecar-conf
+        configMap:
+          name: sidecar-config-map
+          items:
+            - key: collector.yaml
+              path: collector.yaml
+      restartPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: temperature-api-service
+spec:
+  selector:
+    app: temperature-api
+  ports:
+    - protocol: TCP
+      port: 12054
+      targetPort: 1254
+  type: ClusterIP
+  externalIPs:
+  - 10.200.0.27
+
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sidecar-config-map
+  namespace: analytix
+data:
+  collector.yaml: |
+    receivers:
+      otlp/tracesInput:
+        protocols:
+          grpc:
+            endpoint: "0.0.0.0:4317"
+      otlp/metricsInput:
+        protocols:
+          grpc:
+            endpoint: "0.0.0.0:4318"
+
+    exporters:
+      otlp/tracesExport:
+        endpoint: "otel-collector-service-staging.monitoring-channel:4317"
+        tls:
+          insecure: true
+      otlp/metricsExport:
+        endpoint: "otel-collector-service-staging.monitoring-channel:4318"
+        tls:
+          insecure: true
+      logging:
+        loglevel: error
+
+    service:
+      pipelines:
+        traces:
+          receivers: [otlp/tracesInput]
+          exporters: [otlp/tracesExport, logging]
+        metrics:
+          receivers: [otlp/metricsInput]
+          exporters: [otlp/metricsExport, logging]
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: temp-pv
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: /mnt/data-share/staging/HOT-BATCH-LAYER
+    type: Directory
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: temp-pvc
+spec:
+  volumeName: "temp-pv"
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
