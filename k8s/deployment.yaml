@@ -16,7 +16,7 @@ spec:
         app: analytix
     spec:
       nodeSelector:
-        kubernetes.io/hostname: ch01-srv12
+        kubernetes.io/hostname: ch01-srv11
       containers:
         - name: analytix-container
           image: docker.registry.local:5000/analytix-snapshot/test:1.0.2
